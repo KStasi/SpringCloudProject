@@ -16,6 +16,15 @@ services:
     depends_on:
       - discovery-server
       - mongo
+
+  api-getaway:
+    build:
+      context: getaway
+      dockerfile: Dockerfile
+    ports:
+     - "9000:9000"
+    depends_on:
+      - client
  
   mongo:
     image: mongo:latest
