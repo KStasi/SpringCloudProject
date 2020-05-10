@@ -1,0 +1,30 @@
+version: '3.4'
+services:
+  discovery-server:
+    build:
+      context: server
+      dockerfile: Dockerfile
+    ports:
+      - "8761:8761"
+ 
+  client:
+    build:
+      context: client
+      dockerfile: Dockerfile
+    ports:
+     - "8081-8082:8081"
+    depends_on:
+      - discovery-server
+      - mongo
+ 
+  mongo:
+    image: mongo:latest
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: planner
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    ports:
+      - "27017:27017"
+    volumes:
+      - /Users/anastasiiakondaurova/Documents/Study/mongo_store:/data/db
