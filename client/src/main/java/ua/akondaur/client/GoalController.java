@@ -37,7 +37,7 @@ class GoalController {
 	private SequenceGeneratorService sequenceGeneratorService;
 
 	@Value("${eureka.instance.instanceId}")
-	private Integer instanceId;
+	private String instanceId;
 
 	@ExceptionHandler(HttpMessageNotReadableException.class)
 	public Map handleMessageException() {
