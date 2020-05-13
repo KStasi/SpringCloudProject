@@ -1,5 +1,6 @@
 package ua.akondaur.client;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -21,6 +22,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 class GoalController {
 	@Autowired
 	private GoalServiceClient goalServiceClient;
+
+	@Autowired
+	ConfigClientAppConfiguration configClientAppConfiguration;
+
+	@GetMapping("/config")
+	public Map getConfig() {
+		Map config = new HashMap<String, String>();
+		config.put("property1", configClientAppConfiguration.getProperty1());
+		config.put("property2", configClientAppConfiguration.getProperty2());
+		config.put("property3", configClientAppConfiguration.getProperty3());
+		config.put("property4", configClientAppConfiguration.getProperty4());
+		config.put("property5", configClientAppConfiguration.getProperty5());
+		config.put("property6", configClientAppConfiguration.getProperty6());
+		config.put("property7", configClientAppConfiguration.getProperty7());
+		config.put("property8", configClientAppConfiguration.getProperty8());
+		config.put("property9", configClientAppConfiguration.getProperty9());
+		return config;
+	}
 
 	@GetMapping("/goals")
 	public Map getAllGoals() {

@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException;
@@ -27,7 +28,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+@RefreshScope
+@RequestMapping
 @RestController
 class GoalController {
 	@Autowired
@@ -39,6 +43,22 @@ class GoalController {
 	@Value("${eureka.instance.instanceId}")
 	private String instanceId;
 
+    @Value("${test.property7:null}")
+    private String property7;
+    @Value("${test.property8:null}")
+    private String property8;
+    @Value("${test.property9:null}")
+    private String property9;
+
+	
+	@GetMapping("/config")
+	public Map getConfig() {
+		Map config = new HashMap<String, String>();
+		config.put("property7", property7);
+		config.put("property8", property8);
+		config.put("property9", property9);
+		return config;
+	}
 	@ExceptionHandler(HttpMessageNotReadableException.class)
 	public Map handleMessageException() {
 		Map result = new HashMap();

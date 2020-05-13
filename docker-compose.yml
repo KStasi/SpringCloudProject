@@ -1,5 +1,12 @@
 version: '3.4'
 services:
+  config:
+    build:
+      context: config
+      dockerfile: Dockerfile
+    ports:
+      - "8888:8888"
+
   discovery-server:
     build:
       context: server
@@ -15,6 +22,7 @@ services:
      - "8081-8082:8081"
     depends_on:
       - discovery-server
+      - config
       - mongo
 
   api-getaway:
