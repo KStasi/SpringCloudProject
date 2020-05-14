@@ -35,9 +35,6 @@ class GoalController {
 		config.put("property4", configClientAppConfiguration.getProperty4());
 		config.put("property5", configClientAppConfiguration.getProperty5());
 		config.put("property6", configClientAppConfiguration.getProperty6());
-		config.put("property7", configClientAppConfiguration.getProperty7());
-		config.put("property8", configClientAppConfiguration.getProperty8());
-		config.put("property9", configClientAppConfiguration.getProperty9());
 		return config;
 	}
 

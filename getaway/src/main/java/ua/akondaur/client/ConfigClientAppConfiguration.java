@@ -15,9 +15,6 @@ public class ConfigClientAppConfiguration {
     private String property4;
     private String property5;
     private String property6;
-    private String property7;
-    private String property8;
-    private String property9;
 
     public String getProperty1() {
         return property1;
@@ -65,30 +62,6 @@ public class ConfigClientAppConfiguration {
 
     public void setProperty6(String property) {
         this.property6 = property;
-    }
-
-    public String getProperty7() {
-        return property7;
-    }
-
-    public void setProperty7(String property) {
-        this.property7 = property;
-    }
-
-    public String getProperty8() {
-        return property8;
-    }
-
-    public void setProperty8(String property) {
-        this.property8 = property;
-    }
-
-    public String getProperty9() {
-        return property9;
-    }
-
-    public void setProperty9(String property) {
-        this.property9 = property;
     }
 
 }
