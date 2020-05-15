@@ -6,21 +6,22 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ua.akondaur.db.Goal;
 
-import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
+import org.springframework.retry.annotation.EnableRetry;
 
 @RestController
+@EnableRetry
+@EnableCircuitBreaker
 class GoalController {
 	@Autowired
 	private ProxyService goalServiceClient;
@@ -40,29 +41,13 @@ class GoalController {
 		return config;
 	}
 
-	@ExceptionHandler(HttpMessageNotReadableException.class)
-	public Map handleMessageException() {
-		Map result = new HashMap();
-
-		result.put("content", "Bad request body");
-		return result;
-	}
-
-	@ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-	public Map handleRequestException() {
-		Map result = new HashMap();
-
-		result.put("content", "Method is not supported");
-		return result;
-	}
-
 	@GetMapping("/goals")
 	public Map getAllGoals() {
 		return goalServiceClient.getAllGoals();
 	}
 
 	@GetMapping("/goals/{id}")
-	public Map getGoalById(@PathVariable(value = "id") long id) throws ResourceNotFoundException {
+	public Map getGoalById(@PathVariable(value = "id") long id) {
 		return goalServiceClient.getGoalById(id);
 	}
 
@@ -72,15 +57,12 @@ class GoalController {
 	}
 
 	@PutMapping("/goals/{id}")
-	public Map updateGoal(@PathVariable(value = "id") Long id, @Valid @RequestBody Goal goalDetails)
-			throws ResourceNotFoundException {
-
+	public Map updateGoal(@PathVariable(value = "id") Long id, @Valid @RequestBody Goal goalDetails) {
 		return goalServiceClient.updateGoal(id, goalDetails);
 	}
 
 	@DeleteMapping("/goals/{id}")
-	public Map deleteGoal(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
-
+	public Map deleteGoal(@PathVariable(value = "id") Long id) {
 		return goalServiceClient.deleteGoal(id);
 	}
 

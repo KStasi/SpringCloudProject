@@ -36,7 +36,7 @@ public class ProxyService {
     }
 
     @CircuitBreaker(name = BACKEND_NAME, fallbackMethod = "fallbackGetOne")
-    public Map getGoalById(@PathVariable(value = "id") long id) throws ResourceNotFoundException {
+    public Map getGoalById(@PathVariable(value = "id") long id) {
         return goalServiceClient.getGoalById(id);
     }
 
@@ -46,14 +46,13 @@ public class ProxyService {
     }
 
     @Retry(name = BACKEND_NAME)
-    public Map updateGoal(@PathVariable(value = "id") Long id, @Valid @RequestBody Goal goalDetails)
-            throws ResourceNotFoundException {
+    public Map updateGoal(@PathVariable(value = "id") Long id, @Valid @RequestBody Goal goalDetails) {
 
         return goalServiceClient.updateGoal(id, goalDetails);
     }
 
     @Retry(name = BACKEND_NAME)
-    public Map deleteGoal(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
+    public Map deleteGoal(@PathVariable(value = "id") Long id) {
 
         return goalServiceClient.deleteGoal(id);
     }
