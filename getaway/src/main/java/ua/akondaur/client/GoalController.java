@@ -16,12 +16,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
-import org.springframework.retry.annotation.EnableRetry;
 
 @RestController
-@EnableRetry
-@EnableCircuitBreaker
 class GoalController {
 	@Autowired
 	private ProxyService goalServiceClient;

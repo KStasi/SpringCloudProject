@@ -15,4 +15,4 @@ RUN apk add --no-cache bash
 ADD https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh wait-for-it.sh
 RUN chmod +x wait-for-it.sh
 
-CMD ./wait-for-it.sh client:8081 --timeout=120 --strict -- java -jar /app/app.jar
+CMD ./wait-for-it.sh client:8081 --timeout=480 --strict -- java -jar /app/app.jar
