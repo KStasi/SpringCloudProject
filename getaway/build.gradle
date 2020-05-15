@@ -21,6 +21,7 @@ repositories {
 
 ext {
 	set('springCloudVersion', "Hoxton.SR1")
+	set('resilience4jVersion', "1.1.0")
 }
 
 dependencies {
@@ -31,6 +32,12 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 	implementation 'org.springframework.cloud:spring-cloud-config-client'
 	implementation 'org.springframework.cloud:spring-cloud-starter-bus-amqp'
+
+	implementation "io.github.resilience4j:resilience4j-spring-boot2:${resilience4jVersion}"
+	implementation "io.github.resilience4j:resilience4j-all:${resilience4jVersion}"
+	implementation "io.github.resilience4j:resilience4j-all:${resilience4jVersion}"
+	implementation "io.github.resilience4j:resilience4j-reactor:${resilience4jVersion}"
+
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'

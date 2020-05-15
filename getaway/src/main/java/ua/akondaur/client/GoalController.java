@@ -6,13 +6,15 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ua.akondaur.db.Goal;
 
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -21,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 class GoalController {
 	@Autowired
-	private GoalServiceClient goalServiceClient;
+	private ProxyService goalServiceClient;
 
 	@Autowired
 	ConfigClientAppConfiguration configClientAppConfiguration;
@@ -36,6 +38,22 @@ class GoalController {
 		config.put("property5", configClientAppConfiguration.getProperty5());
 		config.put("property6", configClientAppConfiguration.getProperty6());
 		return config;
+	}
+
+	@ExceptionHandler(HttpMessageNotReadableException.class)
+	public Map handleMessageException() {
+		Map result = new HashMap();
+
+		result.put("content", "Bad request body");
+		return result;
+	}
+
+	@ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+	public Map handleRequestException() {
+		Map result = new HashMap();
+
+		result.put("content", "Method is not supported");
+		return result;
 	}
 
 	@GetMapping("/goals")
