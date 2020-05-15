@@ -36,7 +36,7 @@ services:
       - mongo
       - rabbit
 
-  api-getaway:
+  api-gateway:
     build:
       context: getaway
       dockerfile: Dockerfile

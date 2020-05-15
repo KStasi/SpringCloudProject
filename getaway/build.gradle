@@ -17,6 +17,7 @@ configurations {
 
 repositories {
 	mavenCentral()
+	maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
 }
 
 ext {
@@ -33,13 +34,23 @@ dependencies {
 	implementation 'org.springframework.cloud:spring-cloud-config-client'
 	implementation 'org.springframework.cloud:spring-cloud-starter-bus-amqp'
 
-	implementation "io.github.resilience4j:resilience4j-spring-boot2:${resilience4jVersion}"
-	implementation "io.github.resilience4j:resilience4j-all:${resilience4jVersion}"
-	implementation "io.github.resilience4j:resilience4j-all:${resilience4jVersion}"
-	implementation "io.github.resilience4j:resilience4j-reactor:${resilience4jVersion}"
+  	compile "io.github.resilience4j:resilience4j-circuitbreaker:${resilience4jVersion}"
+  	compile "io.github.resilience4j:resilience4j-ratelimiter:${resilience4jVersion}"
+  	compile "io.github.resilience4j:resilience4j-retry:${resilience4jVersion}"
+  	compile "io.github.resilience4j:resilience4j-bulkhead:${resilience4jVersion}"
+  	compile "io.github.resilience4j:resilience4j-cache:${resilience4jVersion}"
+  	compile "io.github.resilience4j:resilience4j-timelimiter:${resilience4jVersion}"
+
+	compile "io.github.resilience4j:resilience4j-spring-boot2:${resilience4jVersion}"
+	compile "io.github.resilience4j:resilience4j-all:${resilience4jVersion}"
+	compile "io.github.resilience4j:resilience4j-reactor:${resilience4jVersion}"
+
 	implementation 'org.json:json:20171018'
 	implementation 'com.netflix.hystrix:hystrix-javanica'
 	implementation 'org.springframework.retry:spring-retry'
+
+    compile "io.github.resilience4j:resilience4j-micrometer:${resilience4jVersion}"
+	compile "io.micrometer:micrometer-registry-prometheus"
 
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
