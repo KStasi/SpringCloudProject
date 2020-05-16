@@ -1,7 +1,6 @@
 package ua.akondaur.consumer;
 
 import java.util.Properties;
-import java.util.Collections;
 
 import java.util.Arrays;
 import org.apache.kafka.clients.consumer.*;
@@ -10,7 +9,8 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 
 
 public class KafkaConsumerDemo {
-    private final static String TOPIC = "create.entity";
+    private final static String TOPIC_CREATED = "create.entity";
+    private final static String TOPIC_UPDATED = "update.entity";
     private final static String BOOTSTRAP_SERVERS = "kafka:9092";
  
     private static Consumer<String, String> createConsumer() {
@@ -23,7 +23,7 @@ public class KafkaConsumerDemo {
         final Consumer<String, String> consumer =
                 new KafkaConsumer<>(props);
  
-        consumer.subscribe(Collections.singletonList(TOPIC));
+        consumer.subscribe(Arrays.asList(TOPIC_CREATED, TOPIC_UPDATED));
         return consumer;
     }
 
