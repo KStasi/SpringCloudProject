@@ -45,6 +45,7 @@ Read `test.http` for manual testing.
 
 # Open ports
 
+```
 Eureka Server URL: http://localhost:8761
 Service URL (instance 1): http://localhost:8081
 Service URL (instance 2): http://localhost:8082
@@ -60,3 +61,4 @@ Zookeeper URL: http://localhost:2181
 Rabbit URL: http://localhost:5672, http://localhost:15672
 Mongo URL: http://localhost:27017
 Grafana URL: http://localhost:3000
+```
