@@ -43,11 +43,11 @@ public class KafkaProducerDemo {
     }
 
     public static void sendCreateTopic(Goal entity) throws Exception {
-        sendMessage(entity, TOPIC_UPDATED);
+        sendMessage(entity, TOPIC_CREATED);
     }
 
     public static void sendUpdateTopic(Goal entity) throws Exception {
-        sendMessage(entity, TOPIC_CREATED);
+        sendMessage(entity, TOPIC_UPDATED);
     }
 
 }

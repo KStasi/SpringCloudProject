@@ -51,7 +51,7 @@ public class Goal {
 	@Override
 	public String toString() {
 		return String.format(
-				"Goal[id=%d, topic='%s', author='%s', tags='%s', time='%l', description='%s', resources='%s', reasons='%s', measures='%s', achievements='%s']",
+				"Goal[id=%d, topic='%s', author='%s', tags='%s', time='%s', description='%s', resources='%s', reasons='%s', measures='%s', achievements='%s']",
 				id, topic, author, String.join(" ", tags), time, description, String.join(" ", resources),
 				String.join(" ", reasons), measures, achievements);
 	}
