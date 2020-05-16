@@ -2,7 +2,6 @@ The aim of the project is to implement microservices architecture.
 The solution is a bunch of services that communicate to each other allowing create, store and modify Goals. There is a special configuration centre and couple of services for fault tolerance.
 To speed up deployment containerization is used. 
 
-# Usage
 
 ## Navigation
 This project is a part of university's practice(Modern Methodologies And Development Technologies of Software Development) that is split to few parts. To navigate, use tags:
@@ -43,7 +42,7 @@ sudo docker-compose up --scale client=2 --scale consumer=3
 
 Read `test.http` for manual testing.
 
-# Open ports
+## Open ports
 
 ```
 Eureka Server URL: http://localhost:8761
