@@ -45,6 +45,7 @@ services:
     depends_on:
       - client
       - config
+      - kafka
 
  
   mongo:
@@ -92,4 +93,13 @@ services:
       KAFKA_ADVERTISED_PORT: 9092
     depends_on:
       - "zookeeper"
-   
+
+  consumer:
+    build:
+      context: consumer
+      dockerfile: Dockerfile
+    ports:
+      - "8034-8036:8034"
+    depends_on:
+      - kafka
+    
