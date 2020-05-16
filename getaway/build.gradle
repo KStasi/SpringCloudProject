@@ -52,6 +52,8 @@ dependencies {
     compile "io.github.resilience4j:resilience4j-micrometer:${resilience4jVersion}"
 	compile "io.micrometer:micrometer-registry-prometheus"
 
+	compile 'org.apache.kafka:kafka-clients:2.5.0'
+	
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'

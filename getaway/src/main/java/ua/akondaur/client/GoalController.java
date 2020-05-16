@@ -23,7 +23,7 @@ class GoalController {
 	private ProxyService goalServiceClient;
 
 	@Autowired
-	ConfigClientAppConfiguration configClientAppConfiguration;
+	private ConfigClientAppConfiguration configClientAppConfiguration;
 
 	@GetMapping("/config")
 	public Map getConfig() {
@@ -49,11 +49,19 @@ class GoalController {
 
 	@PostMapping("/goals")
 	public Map createGoal(@Valid @RequestBody Goal goal) {
+		try {
+			KafkaProducerDemo.sendCreateTopic(goal);
+		} catch (Exception e) {
+		}
 		return goalServiceClient.createGoal(goal);
 	}
 
 	@PutMapping("/goals/{id}")
 	public Map updateGoal(@PathVariable(value = "id") Long id, @Valid @RequestBody Goal goalDetails) {
+		try {
+			KafkaProducerDemo.sendUpdateTopic(goalDetails);
+		} catch (Exception e) {
+		}
 		return goalServiceClient.updateGoal(id, goalDetails);
 	}
 
