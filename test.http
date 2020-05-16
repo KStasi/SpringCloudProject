@@ -1,0 +1,111 @@
+### Practice 3
+
+### Api-gateway config
+GET http://localhost:9000/config
+Content-type: application/json
+
+### Service (instance 1) config
+GET http://localhost:8081/config
+Content-type: application/json
+
+### Service (instance 2) config
+GET http://localhost:8082/config
+Content-type: application/json
+
+### Configs in config server
+GET http://localhost:8888/client/default
+Content-type: application/json
+
+### Config refresh
+POST http://localhost:8081/actuator/refresh
+
+### Bus refresh
+POST http://localhost:8081/actuator/bus-refresh
+
+
+### Practice 4
+
+### Create goals
+POST http://localhost:9000/goals
+Content-type: application/json
+
+{
+    "topic": "Complete practice 3",
+    "author": "KStasi",
+    "tags": ["Study"],
+    "time": "1589633010",
+    "description": "Complete practice 3 until Friday",
+    "resources": ["Docs","Coffee"],
+    "reasons": ["More free time","Less panic"],
+    "measures":"Marks"
+}
+
+### Update goals
+PUT http://localhost:9000/goals/1
+Content-type: application/json
+
+{
+    "topic": "Complete practice 3",
+    "author": "KStasi",
+    "tags": ["Study"],
+    "time": "1589633010",
+    "description": "Complete practice 3 until Sunday",
+    "resources": ["Docs","Coffee"],
+    "reasons": ["More free time","Less panic"],
+    "measures":"Freedom"
+}
+
+### Fetch entities
+GET http://localhost:9000/goals
+Content-type: application/json
+
+### Fetch goals
+GET http://localhost:9000/goals/1
+Content-type: application/json
+
+### Delete entity
+DELETE http://localhost:9000/goals/1
+
+
+### Practice 5
+
+### Create goals
+POST http://localhost:9000/goals
+Content-type: application/json
+
+{
+    "topic": "Complete practice 3",
+    "author": "KStasi",
+    "tags": ["Study"],
+    "time": "1589633010",
+    "description": "Complete practice 3 until Friday",
+    "resources": ["Docs","Coffee"],
+    "reasons": ["More free time","Less panic"],
+    "measures":"Marks"
+}
+
+### Update goals
+PUT http://localhost:9000/goals/1
+Content-type: application/json
+
+{
+    "topic": "Complete practice 3",
+    "author": "KStasi",
+    "tags": ["Study"],
+    "time": "1589633010",
+    "description": "Complete practice 3 until Sunday",
+    "resources": ["Docs","Coffee"],
+    "reasons": ["More free time","Less panic"],
+    "measures":"Freedom"
+}
+
+### Fetch entities
+GET http://localhost:9000/goals
+Content-type: application/json
+
+### Fetch goals
+GET http://localhost:9000/goals/1
+Content-type: application/json
+
+### Delete entity
+DELETE http://localhost:9000/goals/1

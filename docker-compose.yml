@@ -46,7 +46,6 @@ services:
       - client
       - config
       - kafka
-
  
   mongo:
     image: mongo:latest
